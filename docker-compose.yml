@@ -1,0 +1,17 @@
+version: "3.7"
+
+services:
+  app-latam-cashier:
+    build:
+      context: .
+      dockerfile: ./docker/app/Dockerfile
+    container_name: app-latam-cashier
+    command: >
+      sh -c 'python main.py'
+    volumes:
+      - .:/app
+    ports:
+      - 3006:3001
+    expose:
+      - 3006
+    
