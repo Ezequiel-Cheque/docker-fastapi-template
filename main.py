@@ -1,16 +1,20 @@
 import uvicorn
 from pathlib import Path
 from src.cashier.app import *
+from os import getenv
+from dotenv import  load_dotenv
+
+load_dotenv()
 
 if __name__ == "__main__":
     
     uvicorn.run(
         f"{Path(__file__).stem}:app",
-        host="0.0.0.0",
-        port=3001,
-        reload=True,
-        debug=True,
+        host=getenv("HOST"),
+        port=int(getenv("PORT")),
+        reload=getenv("RELOAD"),
+        debug=getenv("DEBUG"),
         log_level="info",
-        workers=1,
+        workers=int(getenv("WORKERS")),
         factory=False
     )

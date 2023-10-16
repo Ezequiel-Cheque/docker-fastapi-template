@@ -1,5 +1,9 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from os import getenv
+from dotenv import  load_dotenv
+
+load_dotenv()
 
 def app():
     
@@ -8,7 +12,7 @@ def app():
         redoc_url=None,
         title="Microservice latam cashier dashboard",
         description="The documentation is from latam cashier dashboard",
-        version="1.0"
+        version=getenv("VERSION")
     )
     
     app.add_middleware(
@@ -21,7 +25,7 @@ def app():
     
     @app.get("/")
     async def index():
-        return "Hello world"
+        return "Hello world !!"
     
     return app
 
